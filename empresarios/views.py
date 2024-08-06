@@ -26,6 +26,8 @@ def cadastrar_empresa (request):
         pitch = request.FILES.get('pitch')
         logo = request.FILES.get('logo')
 
+        # Todo: Realizar validação dos campos
+
         try:
             empresa = Empresas(
                 user=request.user,
@@ -48,8 +50,8 @@ def cadastrar_empresa (request):
             empresa.save()
 
         except:
-            messages.add_message(request, constants.ERROR, 'Erro interno do sistema')
+            messages.add_message(request, constants.ERROR, 'Erro interno do sistema!')
             return redirect('/empresarios/cadastrar_empresa')
         
-        messages.add_message(request, constants.SUCCESS, 'Empresa criada com sucesso')
+        messages.add_message(request, constants.SUCCESS, 'Empresa criada com sucesso!')
         return redirect('/empresarios/cadastrar_empresa')
